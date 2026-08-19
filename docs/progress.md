@@ -156,6 +156,7 @@ Every item verified present and working, not merely referenced.
 | GitHub Pages enabled from the `gh-pages` branch | ✅ |
 | Privacy policy live at `https://owncoder.github.io/tallshot/` | ✅ |
 | Terms live at `https://owncoder.github.io/tallshot/terms.html` | ✅ |
+| Submission ZIP extracted and load-verified | ✅ 8/8 — manifest at archive root, 5 permissions, 0 host permissions, worker responds |
 | Chrome Web Store submission | ⬜ Awaiting the developer's action — package ready in `Store Upload/` |
 
 ---

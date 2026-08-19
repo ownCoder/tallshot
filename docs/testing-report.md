@@ -112,6 +112,8 @@ That final assertion is the valuable one. A wrong byte offset in a hand-written 
 | Service worker answers a `ping` message round-trip | ✅ |
 | Service worker target is live once woken | ✅ |
 
+**Submission ZIP verification (8 further checks, executed separately)** — the built `Store Upload/Extension.zip` was extracted and loaded as an unpacked extension. Verified: `manifest.json` sits at the archive root (a nested folder is the most common packaging rejection), version and name correct, Manifest V3, exactly five permissions, zero host permissions, the service worker answers a message, and no manifest load errors. Result: 8/8.
+
 Reading the permission set back **through the browser's own manifest API**, rather than from our JSON, is deliberate: it verifies what the browser actually grants, which is the claim made to users.
 
 **Service worker capabilities (7)** — `chrome.tabs.captureVisibleTab`, `chrome.scripting.executeScript`, `chrome.downloads.download`, `OffscreenCanvas`, `createImageBitmap` and `indexedDB` are all reachable inside the MV3 worker, and the worker reports the expected version.
@@ -282,7 +284,7 @@ No timing figures are claimed, because none have been measured on real hardware.
 | Drawing on a tall canvas | 60 fps | ⬜ |
 | Peak memory during capture | canvas + one frame | ⬜ |
 | Undo history, 100 operations | < 1 MB | ⬜ |
-| **Package size** | **< 250 KB unpacked** | **✅ 191 KB unpacked · 67 KB zipped** |
+| **Package size** | **< 250 KB unpacked** | **✅ 197 KB unpacked · 68 KB zipped** |
 
 Package size is the one figure actually measured, by the build.
 

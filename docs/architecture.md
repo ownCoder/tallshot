@@ -247,7 +247,7 @@ Every handler validates its payload shape and returns a typed error rather than 
 | **Stitch time** | GPU-backed `OffscreenCanvas`, single pass, no intermediate copies | < 500 ms for a 20-frame page |
 | **Editor responsiveness** | Two-canvas model: a static base canvas for the image plus a scratch canvas for the in-progress stroke, so only the scratch layer repaints during a drag | 60 fps while drawing |
 | **Undo memory** | Vector command history (shape descriptors), **not** per-step bitmaps. A 100-step history costs kilobytes instead of hundreds of megabytes. | < 1 MB for 100 steps |
-| **Package size** | Zero runtime dependencies. Our own minimal PDF writer instead of a bundled library. | 191 KB unpacked, 67 KB zipped |
+| **Package size** | Zero runtime dependencies. Our own minimal PDF writer instead of a bundled library. | 197 KB unpacked, 68 KB zipped |
 
 ### The two-canvas editor model
 
