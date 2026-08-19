@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tallshot settings</title>
+    <link rel="stylesheet" href="../ui/theme.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="head">
+        <svg class="head__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="tsMarkO" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#9B85FF" />
+              <stop offset="1" stop-color="#5B3FE0" />
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="7" fill="url(#tsMarkO)" />
+          <rect x="10" y="-2" width="12" height="24" rx="2.5" fill="#fff" opacity=".95" />
+          <rect x="12.5" y="4" width="7" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55" />
+          <rect x="12.5" y="7.6" width="5" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55" />
+          <rect x="12.5" y="11.2" width="7" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55" />
+          <path d="M16 21.5 L21 26.5 L11 26.5 Z" fill="#FFB020" />
+        </svg>
+        <div>
+          <h1 class="head__title">Tallshot settings</h1>
+          <p class="head__sub">Your captures. Your device. Your rules.</p>
+        </div>
+      </header>
+
+      <div class="welcome" id="welcome" hidden>
+        <h2>Tallshot is ready</h2>
+        <p>
+          Press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> on any page to capture it
+          top to bottom, or click the Tallshot icon in your toolbar. Nothing you capture
+          leaves this device.
+        </p>
+      </div>
+
+      <!-- ── Capture ─────────────────────────────────────────────────── -->
+      <section class="card">
+        <h2 class="card__title">Capture</h2>
+
+        <div class="row">
+          <div class="row__text">
+            <label class="row__label" for="afterCapture">After capture</label>
+            <p class="row__hint">What happens the moment a capture finishes.</p>
+          </div>
+          <select id="afterCapture" class="control">
+            <option value="editor">Open editor</option>
+            <option value="download">Download immediately</option>
+            <option value="clipboard">Copy to clipboard</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="row__text">
+            <label class="row__label" for="captureDelay">Capture delay</label>
+            <p class="row__hint">
+              Pause after each scroll before capturing. Raise it on sites with heavy
+              animations; lower it for faster captures.
+            </p>
+          </div>
+          <select id="captureDelay" class="control">
+            <option value="0">None — fastest</option>
+            <option value="150">150 ms</option>
+            <option value="250">250 ms — recommended</option>
+            <option value="400">400 ms</option>
+            <option value="700">700 ms — slow sites</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="row__text">
+            <span class="row__label">Hide sticky elements</span>
+            <p class="row__hint">
+              Keeps a fixed header or floating chat widget from repeating down the image.
+              It appears once, at the top, where it belongs.
+            </p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="hideSticky" />
+            <span class="switch__track"><span class="switch__thumb"></span></span>
+            <span class="ts-sr">Hide sticky elements while capturing</span>
+          </label>
+        </div>
+
+        <div class="row">
+          <div class="row__text">
+            <span class="row__label">Pre-load lazy images</span>
+            <p class="row__hint">
+              Scrolls the page once before capturing so images that load on scroll are
+              actually there. Adds a few seconds; prevents grey placeholder boxes.
+            </p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="preloadLazy" />
+            <span class="switch__track"><span class="switch__thumb"></span></span>
+            <span class="ts-sr">Pre-load lazy images before capturing</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ── Export ──────────────────────────────────────────────────── -->
+      <section class="card">
+        <h2 class="card__title">Export</h2>
+
+        <div class="row">
+          <div class="row__text">
+            <label class="row__label" for="defaultFormat">Default format</label>
+            <p class="row__hint">Used by the Save button and <kbd>Ctrl</kbd>+<kbd>S</kbd>.</p>
+          </div>
+          <select id="defaultFormat" class="control">
+            <option value="png">PNG — lossless</option>
+            <option value="jpg">JPG — smaller file</option>
+            <option value="webp">WebP — smallest</option>
+            <option value="pdf">PDF — document</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="row__text">
+            <label class="row__label" for="quality">JPG / WebP / PDF quality</label>
+            <p class="row__hint">Higher keeps more detail and makes larger files.</p>
+          </div>
+          <div class="control control--range">
+            <input type="range" id="quality" min="40" max="100" step="1" />
+            <output id="qualityValue" class="control__out">92%</output>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="row__text">
+            <label class="row__label" for="pdfLayout">PDF layout</label>
+            <p class="row__hint">
+              Paginated splits a long page across A4 sheets so it prints properly.
+              Single keeps it as one continuous page.
+            </p>
+          </div>
+          <select id="pdfLayout" class="control">
+            <option value="paginated">Paginated A4</option>
+            <option value="single">One long page</option>
+          </select>
+        </div>
+
+        <div class="row row--stack">
+          <div class="row__text">
+            <label class="row__label" for="filenameTemplate">Filename template</label>
+            <p class="row__hint" id="filenamePreview">Preview:</p>
+          </div>
+          <input type="text" id="filenameTemplate" class="control control--text" spellcheck="false" />
+          <div class="tokens" id="tokens"></div>
+        </div>
+      </section>
+
+      <!-- ── Appearance ──────────────────────────────────────────────── -->
+      <section class="card">
+        <h2 class="card__title">Appearance</h2>
+        <div class="row">
+          <div class="row__text">
+            <label class="row__label" for="theme">Theme</label>
+            <p class="row__hint">
+              Applies to the popup and this page. The editor is always dark so your
+              screenshot stays the brightest thing on screen.
+            </p>
+          </div>
+          <select id="theme" class="control">
+            <option value="system">Match system</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- ── Keyboard ────────────────────────────────────────────────── -->
+      <section class="card">
+        <h2 class="card__title">Keyboard</h2>
+        <ul class="shortcuts">
+          <li><span>Capture full page</span><kbd>Alt</kbd><kbd>Shift</kbd><kbd>F</kbd></li>
+          <li><span>Capture visible area</span><kbd>Alt</kbd><kbd>Shift</kbd><kbd>V</kbd></li>
+          <li><span>Select a region</span><kbd>Alt</kbd><kbd>Shift</kbd><kbd>R</kbd></li>
+          <li><span>Cancel a capture</span><kbd>Esc</kbd></li>
+        </ul>
+        <button class="btn btn--ghost" id="openShortcuts" type="button">
+          Change these in Chrome
+        </button>
+      </section>
+
+      <!-- ── Privacy ─────────────────────────────────────────────────── -->
+      <section class="card card--accent">
+        <h2 class="card__title">What Tallshot can and cannot do</h2>
+        <ul class="facts">
+          <li><strong>No host permissions.</strong> Tallshot can only touch a page after you explicitly ask it to, and only that page.</li>
+          <li><strong>No network code.</strong> There is no analytics, no telemetry, no remote configuration, and no server to talk to.</li>
+          <li><strong>Nothing is uploaded.</strong> Captures are processed on your device and saved where you choose.</li>
+          <li><strong>Settings only.</strong> The only thing Tallshot stores is the preferences on this page.</li>
+        </ul>
+      </section>
+
+      <!-- ── About ───────────────────────────────────────────────────── -->
+      <section class="card">
+        <h2 class="card__title">About</h2>
+        <p class="about">
+          Tallshot <span id="version">1.0.0</span> ·
+          <a id="privacyLink" href="#" target="_blank" rel="noopener noreferrer">Privacy policy</a> ·
+          <a id="termsLink" href="#" target="_blank" rel="noopener noreferrer">Terms of use</a> ·
+          <a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer">Source code</a>
+        </p>
+        <button class="btn btn--danger" id="resetAll" type="button">Reset all settings</button>
+      </section>
+
+      <footer class="foot">
+        <p>Everything stays on this device.</p>
+      </footer>
+    </div>
+
+    <div class="saved" id="saved" role="status" aria-live="polite" hidden>Saved</div>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

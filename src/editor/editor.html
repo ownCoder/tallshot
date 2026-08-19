@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tallshot editor</title>
+    <link rel="stylesheet" href="../ui/theme.css" />
+    <link rel="stylesheet" href="editor.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <!-- ── Header ────────────────────────────────────────────────── -->
+      <header class="bar">
+        <div class="bar__left">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="tsMarkE" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#9B85FF" />
+                <stop offset="1" stop-color="#5B3FE0" />
+              </linearGradient>
+            </defs>
+            <rect width="32" height="32" rx="7" fill="url(#tsMarkE)" />
+            <rect x="10" y="-2" width="12" height="24" rx="2.5" fill="#fff" opacity=".95" />
+            <rect x="12.5" y="4" width="7" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55" />
+            <rect x="12.5" y="7.6" width="5" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55" />
+            <rect x="12.5" y="11.2" width="7" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55" />
+            <path d="M16 21.5 L21 26.5 L11 26.5 Z" fill="#FFB020" />
+          </svg>
+          <div class="meta">
+            <span class="meta__host" id="metaHost">Tallshot</span>
+            <span class="meta__dims" id="metaDims"></span>
+          </div>
+        </div>
+
+        <div class="bar__right">
+          <div class="group">
+            <button class="btn btn--ghost" id="btnUndo" type="button" title="Undo (Ctrl+Z)" aria-label="Undo">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5" /><path d="M4 12h9a6 6 0 0 1 0 12h-2" /></svg>
+            </button>
+            <button class="btn btn--ghost" id="btnRedo" type="button" title="Redo (Ctrl+Shift+Z)" aria-label="Redo">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 7 5 5-5 5" /><path d="M20 12h-9a6 6 0 0 0 0 12h2" /></svg>
+            </button>
+          </div>
+
+          <button class="btn btn--ghost" id="btnHelp" type="button" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M9.6 9.3a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.8-.9 1.4v.6" /><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none" /></svg>
+          </button>
+
+          <button class="btn btn--ghost" id="btnCopy" type="button" title="Copy to clipboard (Ctrl+C)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" /></svg>
+            <span>Copy</span>
+          </button>
+
+          <div class="split">
+            <button class="btn btn--primary" id="btnSave" type="button" title="Save (Ctrl+S)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12" /><path d="m7.5 10.5 4.5 4.5 4.5-4.5" /><path d="M4 20h16" /></svg>
+              <span id="saveLabel">Save PNG</span>
+            </button>
+            <button
+              class="btn btn--primary btn--caret"
+              id="btnFormats"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-label="Choose export format"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" /></svg>
+            </button>
+            <div class="menu" id="formatMenu" role="menu" hidden>
+              <button role="menuitem" type="button" data-format="png">PNG <span>Lossless</span></button>
+              <button role="menuitem" type="button" data-format="jpg">JPG <span>Smaller file</span></button>
+              <button role="menuitem" type="button" data-format="webp">WebP <span>Smallest</span></button>
+              <button role="menuitem" type="button" data-format="pdf">PDF <span>Paginated A4</span></button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ── Degraded-capture banner ───────────────────────────────── -->
+      <div class="banner" id="banner" role="status" hidden></div>
+
+      <!-- ── Body ──────────────────────────────────────────────────── -->
+      <div class="body">
+        <nav class="rail" id="rail" role="toolbar" aria-label="Annotation tools" aria-orientation="vertical"></nav>
+
+        <main class="stage" id="stage">
+          <div class="canvasWrap" id="canvasWrap">
+            <canvas id="base"></canvas>
+            <canvas id="scratch"></canvas>
+            <div class="textEntry" id="textEntry" hidden>
+              <textarea id="textInput" rows="1" aria-label="Annotation text"></textarea>
+              <div class="textEntry__hint"><kbd>Enter</kbd> add · <kbd>Esc</kbd> cancel</div>
+            </div>
+          </div>
+
+          <div class="empty" id="empty" hidden>
+            <svg class="empty__mark" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="7" fill="currentColor" opacity=".18" />
+              <rect x="10" y="4" width="12" height="18" rx="2.5" fill="currentColor" opacity=".5" />
+            </svg>
+            <h1 class="empty__title">No capture loaded</h1>
+            <p class="empty__text" id="emptyText">The image for this tab is no longer available.</p>
+            <button class="btn btn--primary" id="btnNewCapture" type="button">Take a screenshot</button>
+          </div>
+
+          <div class="loading" id="loading">
+            <div class="loading__bar"><i></i></div>
+            <p>Loading capture…</p>
+          </div>
+        </main>
+      </div>
+
+      <!-- ── Contextual bar ────────────────────────────────────────── -->
+      <footer class="ctx" id="ctx">
+        <div class="ctx__group" id="colorGroup">
+          <span class="ctx__label">Colour</span>
+          <div class="swatches" id="swatches" role="radiogroup" aria-label="Annotation colour"></div>
+        </div>
+
+        <div class="ctx__group" id="widthGroup">
+          <label class="ctx__label" for="widthRange">Width</label>
+          <input type="range" id="widthRange" min="1" max="24" step="1" value="4" />
+          <output class="ctx__value" id="widthValue">4</output>
+        </div>
+
+        <div class="ctx__group" id="fontGroup" hidden>
+          <label class="ctx__label" for="fontRange">Size</label>
+          <input type="range" id="fontRange" min="12" max="96" step="2" value="28" />
+          <output class="ctx__value" id="fontValue">28</output>
+        </div>
+
+        <div class="ctx__group" id="radiusGroup" hidden>
+          <label class="ctx__label" for="radiusRange">Strength</label>
+          <input type="range" id="radiusRange" min="4" max="40" step="2" value="14" />
+          <output class="ctx__value" id="radiusValue">14</output>
+        </div>
+
+        <div class="ctx__group" id="fillGroup" hidden>
+          <label class="ctx__check" for="fillToggle">
+            <input type="checkbox" id="fillToggle" />
+            <span>Filled</span>
+          </label>
+        </div>
+
+        <div class="ctx__group ctx__group--crop" id="cropGroup" hidden>
+          <button class="btn btn--primary btn--sm" id="cropApply" type="button">Apply crop</button>
+          <button class="btn btn--ghost btn--sm" id="cropCancel" type="button">Cancel</button>
+        </div>
+
+        <div class="ctx__spacer"></div>
+
+        <div class="ctx__group">
+          <button class="btn btn--ghost btn--sm" id="zoomOut" type="button" aria-label="Zoom out">−</button>
+          <output class="ctx__value ctx__value--zoom" id="zoomValue">100%</output>
+          <button class="btn btn--ghost btn--sm" id="zoomIn" type="button" aria-label="Zoom in">+</button>
+          <button class="btn btn--ghost btn--sm" id="zoomFit" type="button">Fit</button>
+          <button class="btn btn--ghost btn--sm" id="zoomActual" type="button">1:1</button>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ── Toast ───────────────────────────────────────────────────── -->
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <!-- ── Shortcut sheet ──────────────────────────────────────────── -->
+    <dialog class="sheet" id="helpSheet" aria-label="Keyboard shortcuts">
+      <div class="sheet__head">
+        <h2>Keyboard shortcuts</h2>
+        <button class="btn btn--ghost btn--sm" id="helpClose" type="button" aria-label="Close">Close</button>
+      </div>
+      <div class="sheet__grid" id="helpGrid"></div>
+    </dialog>
+
+    <script type="module" src="editor.js"></script>
+  </body>
+</html>

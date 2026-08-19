@@ -1,0 +1,384 @@
+/**
+ * Tallshot — options.
+ *
+ * Light and document-like: a single column, grouped sections, generous
+ * whitespace. This is a settings page, not a landing page.
+ */
+
+body {
+  background: var(--ts-surface);
+  padding: 0 20px 56px;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────── */
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 36px 0 22px;
+}
+
+.head__mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  flex: none;
+}
+
+.head__title {
+  margin: 0;
+  font-size: var(--ts-fs-display);
+  font-weight: 650;
+  letter-spacing: -0.014em;
+}
+
+.head__sub {
+  margin: 2px 0 0;
+  color: var(--ts-text-2);
+}
+
+/* ── Welcome ─────────────────────────────────────────────────────────── */
+
+.welcome {
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  border-radius: var(--ts-r-lg);
+  background: linear-gradient(
+    135deg,
+    rgba(122, 92, 255, 0.14),
+    rgba(122, 92, 255, 0.05)
+  );
+  border: 1px solid rgba(122, 92, 255, 0.34);
+}
+
+.welcome h2 {
+  margin: 0 0 5px;
+  font-size: var(--ts-fs-title);
+  font-weight: 620;
+}
+
+.welcome p {
+  margin: 0;
+  color: var(--ts-text-2);
+  max-width: 62ch;
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────── */
+
+.card {
+  padding: 6px 20px 18px;
+  margin-bottom: 16px;
+  border-radius: var(--ts-r-lg);
+  background: var(--ts-surface-2);
+  border: 1px solid var(--ts-line);
+}
+
+.card--accent {
+  border-color: rgba(46, 211, 167, 0.42);
+  background: linear-gradient(
+    180deg,
+    rgba(46, 211, 167, 0.07),
+    var(--ts-surface-2) 60%
+  );
+}
+
+.card__title {
+  margin: 0;
+  padding: 16px 0 8px;
+  font-size: var(--ts-fs-caption);
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ts-text-3);
+}
+
+/* ── Rows ────────────────────────────────────────────────────────────── */
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 0;
+  border-top: 1px solid var(--ts-line);
+}
+
+.row--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.row__text {
+  min-width: 0;
+  flex: 1;
+}
+
+.row__label {
+  display: block;
+  font-weight: 600;
+  color: var(--ts-text);
+}
+
+.row__hint {
+  margin: 3px 0 0;
+  max-width: 58ch;
+  font-size: var(--ts-fs-caption);
+  color: var(--ts-text-2);
+  line-height: 1.5;
+}
+
+/* ── Controls ────────────────────────────────────────────────────────── */
+
+.control {
+  flex: none;
+  min-width: 210px;
+  padding: 8px 10px;
+  border-radius: var(--ts-r-sm);
+  border: 1px solid var(--ts-line);
+  background: var(--ts-surface-3);
+  color: var(--ts-text);
+  cursor: pointer;
+}
+
+.control--text {
+  width: 100%;
+  min-width: 0;
+  font-family: var(--ts-font-mono);
+  font-size: var(--ts-fs-label);
+  cursor: text;
+}
+
+.control--range {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.control--range input[type="range"] {
+  width: 170px;
+  accent-color: var(--ts-violet);
+  cursor: pointer;
+}
+
+.control__out {
+  font-family: var(--ts-font-mono);
+  font-size: var(--ts-fs-caption);
+  color: var(--ts-text-2);
+  min-width: 4ch;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Switch ──────────────────────────────────────────────────────────── */
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.switch__track {
+  display: block;
+  width: 42px;
+  height: 24px;
+  border-radius: var(--ts-r-pill);
+  background: var(--ts-surface-3);
+  border: 1px solid var(--ts-line);
+  transition: background var(--ts-dur-fast) var(--ts-ease);
+}
+
+.switch__thumb {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 2px;
+  border-radius: 50%;
+  background: var(--ts-text-3);
+  transition: transform var(--ts-dur-fast) var(--ts-ease),
+    background var(--ts-dur-fast) var(--ts-ease);
+}
+
+.switch input:checked + .switch__track {
+  background: var(--ts-violet);
+  border-color: var(--ts-violet);
+}
+
+.switch input:checked + .switch__track .switch__thumb {
+  background: #fff;
+  transform: translateX(18px);
+}
+
+.switch input:focus-visible + .switch__track {
+  outline: 2px solid var(--ts-focus);
+  outline-offset: 2px;
+}
+
+/* ── Tokens ──────────────────────────────────────────────────────────── */
+
+.tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.token {
+  padding: 4px 8px;
+  border-radius: var(--ts-r-sm);
+  border: 1px solid var(--ts-line);
+  background: var(--ts-surface-3);
+  font-family: var(--ts-font-mono);
+  font-size: var(--ts-fs-micro);
+  color: var(--ts-text-2);
+  cursor: pointer;
+}
+
+.token:hover {
+  border-color: var(--ts-violet);
+  color: var(--ts-text);
+}
+
+/* ── Shortcuts ───────────────────────────────────────────────────────── */
+
+.shortcuts {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
+
+.shortcuts li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 0;
+  border-top: 1px solid var(--ts-line);
+}
+
+.shortcuts li span {
+  flex: 1;
+  color: var(--ts-text-2);
+}
+
+/* ── Facts ───────────────────────────────────────────────────────────── */
+
+.facts {
+  margin: 0;
+  padding: 6px 0 0 18px;
+}
+
+.facts li {
+  margin-bottom: 8px;
+  color: var(--ts-text-2);
+  line-height: 1.55;
+  max-width: 66ch;
+}
+
+.facts strong {
+  color: var(--ts-text);
+}
+
+/* ── About ───────────────────────────────────────────────────────────── */
+
+.about {
+  margin: 10px 0 14px;
+  color: var(--ts-text-2);
+}
+
+.about a {
+  color: var(--ts-violet);
+  text-decoration: none;
+}
+
+.about a:hover {
+  text-decoration: underline;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border: 1px solid var(--ts-line);
+  border-radius: var(--ts-r-sm);
+  background: var(--ts-surface-3);
+  color: var(--ts-text);
+  font-size: var(--ts-fs-label);
+  font-weight: 550;
+  cursor: pointer;
+  transition: background var(--ts-dur-fast) var(--ts-ease);
+}
+
+.btn:hover {
+  background: var(--ts-line);
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+.btn--danger {
+  color: var(--ts-danger);
+  border-color: rgba(255, 92, 122, 0.4);
+  background: transparent;
+}
+
+.btn--danger:hover {
+  background: rgba(255, 92, 122, 0.1);
+}
+
+/* ── Footer & toast ──────────────────────────────────────────────────── */
+
+.foot {
+  text-align: center;
+  color: var(--ts-text-3);
+  font-size: var(--ts-fs-caption);
+  padding: 8px 0 0;
+}
+
+.saved {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 9px 15px;
+  border-radius: var(--ts-r-pill);
+  background: var(--ts-surface-2);
+  border: 1px solid var(--ts-success);
+  box-shadow: var(--ts-shadow-2);
+  font-size: var(--ts-fs-label);
+  font-weight: 600;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+
+@media (max-width: 620px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .control {
+    min-width: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,252 @@
+/**
+ * Tallshot — popup.
+ *
+ * 328px fixed. Chrome's popup viewport is constrained and a responsive popup
+ * solves a problem that does not exist. Three capture targets are the entire
+ * body; nothing competes with them.
+ */
+
+body {
+  width: 328px;
+  background: var(--ts-surface);
+}
+
+.pop {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────── */
+
+.pop__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brand__mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  display: block;
+}
+
+.brand__name {
+  font-size: var(--ts-fs-title);
+  font-weight: 620;
+  letter-spacing: -0.011em;
+}
+
+.iconbtn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ts-r-sm);
+  background: transparent;
+  color: var(--ts-text-3);
+  cursor: pointer;
+  transition: background var(--ts-dur-fast) var(--ts-ease),
+    color var(--ts-dur-fast) var(--ts-ease);
+}
+
+.iconbtn:hover {
+  background: var(--ts-surface-3);
+  color: var(--ts-text);
+}
+
+.iconbtn svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Capture buttons ─────────────────────────────────────────────────── */
+
+.pop__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 2px 12px 12px;
+}
+
+.capture {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 12px;
+  text-align: left;
+  border: 1px solid var(--ts-line);
+  border-radius: var(--ts-r-md);
+  background: var(--ts-surface-2);
+  color: var(--ts-text);
+  cursor: pointer;
+  transition: background var(--ts-dur-fast) var(--ts-ease),
+    border-color var(--ts-dur-fast) var(--ts-ease),
+    transform var(--ts-dur-fast) var(--ts-ease);
+}
+
+.capture:hover {
+  background: var(--ts-surface-3);
+  border-color: var(--ts-violet);
+}
+
+.capture:active {
+  transform: translateY(1px);
+}
+
+.capture[disabled] {
+  opacity: 0.5;
+  cursor: default;
+  transform: none;
+}
+
+/* The primary action earns a violet wash — one emphasis, not three. */
+.capture--primary {
+  background: linear-gradient(
+    180deg,
+    rgba(122, 92, 255, 0.16),
+    rgba(122, 92, 255, 0.07)
+  );
+  border-color: rgba(122, 92, 255, 0.5);
+}
+
+.capture--primary:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(122, 92, 255, 0.26),
+    rgba(122, 92, 255, 0.12)
+  );
+}
+
+.capture__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: var(--ts-r-sm);
+  background: var(--ts-surface-3);
+  color: var(--ts-violet-lift);
+}
+
+.capture--primary .capture__icon {
+  background: rgba(122, 92, 255, 0.22);
+  color: #fff;
+}
+
+.capture__icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.capture__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.capture__title {
+  font-size: var(--ts-fs-body);
+  font-weight: 600;
+}
+
+.capture__sub {
+  font-size: var(--ts-fs-caption);
+  color: var(--ts-text-2);
+}
+
+.capture__key {
+  flex: none;
+}
+
+/* ── Status note ─────────────────────────────────────────────────────── */
+
+.pop__note {
+  margin: 0 12px 10px;
+  padding: 9px 11px;
+  border-radius: var(--ts-r-sm);
+  background: rgba(255, 176, 32, 0.12);
+  border: 1px solid rgba(255, 176, 32, 0.4);
+  color: var(--ts-text);
+  font-size: var(--ts-fs-caption);
+}
+
+.pop__note[data-kind="error"] {
+  background: rgba(255, 92, 122, 0.12);
+  border-color: rgba(255, 92, 122, 0.4);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+
+.pop__foot {
+  border-top: 1px solid var(--ts-line);
+  padding: 11px 14px 12px;
+  background: var(--ts-surface);
+}
+
+.after {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.after__label {
+  font-size: var(--ts-fs-label);
+  color: var(--ts-text-2);
+}
+
+.after__select {
+  flex: 1;
+  max-width: 165px;
+  padding: 6px 8px;
+  border-radius: var(--ts-r-sm);
+  border: 1px solid var(--ts-line);
+  background: var(--ts-surface-3);
+  color: var(--ts-text);
+  font-size: var(--ts-fs-label);
+  cursor: pointer;
+}
+
+.privacy {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 0;
+  font-size: var(--ts-fs-caption);
+  color: var(--ts-text-3);
+}
+
+.privacy__icon {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  fill: none;
+  stroke: var(--ts-success);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

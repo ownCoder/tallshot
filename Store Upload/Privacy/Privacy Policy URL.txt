@@ -1,0 +1,21 @@
+Tallshot — Chrome Web Store submission URLs
+
+Paste this into the "Privacy policy URL" field on the Privacy practices tab:
+
+  https://owncoder.github.io/tallshot/
+
+Terms of use (optional, may go in the listing description or support field):
+
+  https://owncoder.github.io/tallshot/terms.html
+
+Support / issues URL:
+
+  https://github.com/ownCoder/tallshot/issues
+
+Homepage URL:
+
+  https://github.com/ownCoder/tallshot
+
+Both pages are served by GitHub Pages from the gh-pages branch of the
+ownCoder/tallshot repository. They are static HTML with no scripts and no
+external requests.

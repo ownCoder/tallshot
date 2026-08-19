@@ -1,0 +1,25 @@
+{
+  "name": "tallshot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tallshot — full-page screenshot and editor for Chrome. Free, local-only, no account.",
+  "homepage": "https://github.com/ownCoder/tallshot",
+  "license": "MIT",
+  "author": "ownCoder",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "icons": "node tools/make-icons.mjs",
+    "screenshots": "node tools/make-screenshots.mjs",
+    "verify": "node tools/verify.mjs",
+    "build": "node tools/build.mjs",
+    "release": "npm run icons && npm run screenshots && npm run pages && npm run verify && npm run build",
+    "test": "node tools/verify.mjs && node tools/test-runtime.mjs",
+    "pages": "node tools/make-pages.mjs",
+    "test:runtime": "node tools/test-runtime.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
