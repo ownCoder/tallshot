@@ -86,6 +86,19 @@
   box-sizing: border-box;
 }
 
+/**
+ * The `hidden` attribute must actually hide.
+ *
+ * The UA stylesheet's `[hidden] { display: none }` is trivially overridden by
+ * any author rule that sets `display` on the same element — which is every
+ * flex container in this project. Without this rule the editor renders every
+ * contextual control group at once, the degraded-capture banner is always
+ * visible, and the loading state never goes away.
+ */
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   font-family: var(--ts-font);

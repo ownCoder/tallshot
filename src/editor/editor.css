@@ -512,6 +512,9 @@ body {
   border: 2px solid transparent;
   cursor: pointer;
   outline-offset: 3px;
+  /* A hairline keeps the near-black swatch visible against the dark toolbar —
+     without it the ink colour reads as an empty gap. */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 
 .swatch[aria-checked="true"] {

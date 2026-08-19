@@ -27,7 +27,7 @@
 | Manual matrix against live websites (§4) | 42 | ⬜ Not yet executed — scheduled for launch week |
 | Runtime performance measurement (§7) | 9 | ⬜ Not yet measured — targets defined, no figures claimed |
 
-**Defects found and fixed during this cycle: 3**, including one security-relevant bug that had passed code review twice. See §5.
+**Defects found and fixed during this cycle: 5**, including one security-relevant bug and one that would have shipped a visibly broken editor. Both were found by execution and rendering, not by review. See §5.
 
 ---
 
@@ -244,6 +244,26 @@ Inside a JavaScript string, the two backslashes are consumed escaping the quote 
 **Severity:** Medium · **Found by:** review during Pages-generator development
 
 The generator parked code-span contents behind a numeric marker delimited by spaces, so any figure in ordinary prose could be mistaken for a placeholder and replaced with unrelated code. Fixed by using a control-character sentinel that cannot occur in the source documents.
+
+### D4 — The `hidden` attribute did not hide *(editor-breaking)*
+
+**Severity:** High · **Found by:** rendering the real extension UI and looking at it
+
+The UA stylesheet rule `[hidden] { display: none }` is overridden by any author rule that sets `display` on the same element — and every panel in this project is a flex container. The consequence in the shipped build was that the editor rendered **every contextual control group simultaneously** (colour, width, size, strength, filled, and the crop confirm buttons), kept the degraded-capture banner permanently visible, and never dismissed the loading state, so the empty state was unreachable.
+
+**Fix:** one rule in `src/ui/theme.css`:
+
+```css
+[hidden] { display: none !important; }
+```
+
+**Why it took this long to find:** every unit and browser assertion up to this point tested *logic* — the code correctly set `element.hidden = true`, and a DOM assertion on `.hidden` would have passed. Only rendering the interface and looking at it exposed that the property had no visual effect. Verified after the fix by asserting the computed visible groups swap correctly when tools change: arrow shows colour and width, blur shows strength alone.
+
+### D5 — Near-black colour swatch invisible on the dark toolbar
+
+**Severity:** Low (usability) · **Found by:** the same visual pass
+
+The ink swatch (`#12151C`) was indistinguishable from the toolbar behind it and read as an empty gap. Fixed with a hairline inset ring on every swatch.
 
 ### D3 — Store screenshot mockups rendered with collapsed text
 

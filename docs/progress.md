@@ -123,6 +123,8 @@ Decisions worth recording because they were not obvious and shaped the product.
 | D1 | Illegal-character class silently omitted the backslash, so a Windows path separator could reach `chrome.downloads` | **High** | Automated unit test — had passed code review twice |
 | D2 | Markdown code-span placeholder could corrupt any number in prose | Medium | Review during Pages generator work |
 | D3 | Store screenshot mockups rendered with collapsed text (inherited `line-height: 0`) and a double-applied transform | Low | Visual review of generated assets |
+| D4 | `[hidden]` was defeated by author `display` rules — the editor showed every contextual control group at once, the banner never hid, and the loading state never cleared | **High** | Rendering the real extension UI and looking at it |
+| D5 | Near-black colour swatch invisible against the dark toolbar | Low | Same visual pass |
 
 Detail in [testing-report.md](testing-report.md) §6.
 
