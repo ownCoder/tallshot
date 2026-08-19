@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terms of Use — Tallshot</title>
+<meta name="description" content="Terms of use for the Tallshot browser extension." />
+<meta name="robots" content="index, follow" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236B4CE8'/%3E%3Crect x='10' y='4' width='12' height='16' rx='2' fill='white'/%3E%3Cpath d='M16 21.5 L21 26.5 L11 26.5 Z' fill='%23FFB020'/%3E%3C/svg%3E" />
+<style>
+  :root {
+    --violet:#6B4CE8; --ink:#131722; --text2:#4E586B; --text3:#7A8497;
+    --line:#E3E7F0; --surface:#F7F8FC; --bg:#fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --violet:#9B85FF; --ink:#EEF1F7; --text2:#A6B0C3; --text3:#6F7A8F;
+      --line:#2A3242; --surface:#161A23; --bg:#0F1117;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0 24px 80px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.65; color: var(--ink); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  header.site {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding: 28px 0 22px; border-bottom: 1px solid var(--line);
+    margin-bottom: 34px; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 11px; }
+  .mark { width: 30px; height: 30px; border-radius: 7px; }
+  .brand b { font-size: 19px; font-weight: 650; letter-spacing: -.015em; }
+  nav.site { display: flex; gap: 18px; font-size: 14px; }
+  nav.site a { color: var(--text2); text-decoration: none; }
+  nav.site a:hover, nav.site a[aria-current] { color: var(--violet); }
+  h1 { font-size: 32px; line-height: 1.18; letter-spacing: -.024em; margin: 0 0 6px; }
+  h2 { font-size: 21px; letter-spacing: -.016em; margin: 40px 0 10px;
+       padding-top: 18px; border-top: 1px solid var(--line); }
+  h3 { font-size: 16.5px; margin: 26px 0 6px; }
+  p { margin: 0 0 14px; }
+  a { color: var(--violet); }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  /* Section breaks are carried by the h2 top border; the rule itself would
+     double it, so hr is reduced to spacing. */
+  hr { border: 0; margin: 22px 0 0; }
+  strong { font-weight: 640; }
+  code {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+    font-size: .88em; padding: 2px 5px; border-radius: 4px;
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  blockquote {
+    margin: 0 0 18px; padding: 14px 18px; border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 3px solid var(--violet); color: var(--text2);
+  }
+  .table-wrap { overflow-x: auto; margin: 0 0 18px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line);
+           vertical-align: top; }
+  th { font-weight: 620; background: var(--surface); white-space: nowrap; }
+  footer.site {
+    margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-size: 13.5px; color: var(--text3);
+  }
+  footer.site a { color: var(--text2); }
+  :focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="brand"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+  <defs><linearGradient id="m" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#9B85FF"/><stop offset="1" stop-color="#5B3FE0"/>
+  </linearGradient></defs>
+  <rect width="32" height="32" rx="7" fill="url(#m)"/>
+  <rect x="10" y="-2" width="12" height="24" rx="2.5" fill="#fff" opacity=".95"/>
+  <rect x="12.5" y="4" width="7" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55"/>
+  <rect x="12.5" y="7.6" width="5" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55"/>
+  <rect x="12.5" y="11.2" width="7" height="1.6" rx=".8" fill="#5B3FE0" opacity=".55"/>
+  <path d="M16 21.5 L21 26.5 L11 26.5 Z" fill="#FFB020"/>
+</svg><b>Tallshot</b></div>
+    <nav class="site">
+      <a href="./">Privacy policy</a>
+      <a href="./terms.html" aria-current="page">Terms of use</a>
+      <a href="https://github.com/ownCoder/tallshot" target="_blank" rel="noopener noreferrer">Source</a>
+    </nav>
+  </header>
+  <main>
+<h1>Terms of Use — Tallshot</h1>
+<ul><li><strong>Effective:</strong> 19 August 2026</li><li><strong>Last updated:</strong> 19 August 2026</li><li><strong>Applies to:</strong> Tallshot browser extension, version 1.0.0 and later</li><li><strong>Published at:</strong> https://owncoder.github.io/tallshot/terms.html</li></ul>
+<hr />
+<h2>1. Agreement</h2>
+<p>By installing or using Tallshot (&quot;the extension&quot;), you agree to these terms. If you do not agree, do not install it, or remove it from <code>chrome://extensions</code>.</p>
+<p>Tallshot is provided by ownCoder (&quot;we&quot;, &quot;us&quot;). It is an independent project and is not affiliated with, endorsed by, or sponsored by Google LLC.</p>
+<hr />
+<h2>2. What Tallshot is</h2>
+<p>Tallshot is a browser extension that captures web pages as images, lets you annotate and redact them, and exports them to your device. All processing happens locally in your browser. See the <a href="https://owncoder.github.io/tallshot/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> for details.</p>
+<hr />
+<h2>3. Licence</h2>
+<p>Tallshot is released under the MIT Licence.</p>
+<p>You may use it for personal or commercial purposes, free of charge; view, modify and redistribute the source, subject to the MIT terms; and use the screenshots you create however you wish.</p>
+<p>The full licence text ships with the source at https://github.com/ownCoder/tallshot.</p>
+<p><strong>Trademark note.</strong> The MIT Licence covers the code. The name &quot;Tallshot&quot; and the Tallshot logo are not licensed for use in a way that implies endorsement of, or affiliation with, a modified version. Fork the code freely; please rename your fork.</p>
+<hr />
+<h2>4. Free of charge</h2>
+<p>Version 1.0 is free in full. There is no watermark, no account, no capture limit, and no export limit.</p>
+<p>If a paid tier is introduced in future, it will add <strong>new</strong> capability. Features available free in version 1.0 will remain free. This commitment is recorded in the project's public documentation and enforced in the source.</p>
+<hr />
+<h2>5. Acceptable use</h2>
+<p>You are responsible for what you capture and what you do with it.</p>
+<p><strong>You agree not to use Tallshot to:</strong></p>
+<ul><li>Capture content you have no right to capture, copy or redistribute</li><li>Infringe anyone's copyright, trademark, privacy or other rights</li><li>Capture, store or share other people's personal, confidential or sensitive information without a lawful basis</li><li>Circumvent access controls, paywalls, or technical protection measures</li><li>Violate the terms of service of any website you visit</li><li>Break any applicable law</li></ul>
+<p><strong>Screenshots and copyright.</strong> Capturing a page does not grant you rights to its content. Web pages are frequently protected by copyright. Whether your use is lawful — fair use, fair dealing, or another exception — depends on your jurisdiction and your purpose. That assessment is yours to make.</p>
+<p><strong>Redaction is a tool, not a guarantee.</strong> The blur and pixelate tools are provided to help you remove sensitive information before sharing. Pixelate destroys the underlying pixels; blur obscures them. Neither is a certified data-sanitisation method, and neither substitutes for your own review. <strong>Always check an exported image before sharing it.</strong> We accept no liability for information disclosed in an image you exported.</p>
+<hr />
+<h2>6. No warranty</h2>
+<p>Tallshot is provided <strong>&quot;as is&quot; and &quot;as available&quot;, without warranty of any kind</strong>, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+<p>We specifically do not warrant that:</p>
+<ul><li>Every capture will be complete, accurate, or pixel-perfect on every website</li><li>The extension will work on every page — browsers restrict extensions on certain pages, and some sites actively interfere with capture</li><li>It will be free of defects or uninterrupted</li><li>It will remain compatible with future browser versions</li><li>Redaction will remove all traces of sensitive information from every image</li></ul>
+<p>Known limitations are documented publicly in the project README and are considered part of these terms by reference.</p>
+<hr />
+<h2>7. Limitation of liability</h2>
+<p>To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, consequential or punitive damages, or for any loss of data, profits, revenue, business, or goodwill, arising from or related to your use of Tallshot — including damages arising from a failed, incomplete or incorrect capture, or from information disclosed in an image you exported.</p>
+<p>Because Tallshot is provided free of charge, our total aggregate liability to you for all claims is limited to <strong>zero</strong>, or to the amount you actually paid us for the extension, whichever is greater.</p>
+<p>Some jurisdictions do not allow the exclusion of certain warranties or the limitation of certain liabilities. Where that is the case, the above applies to the fullest extent permitted, and nothing here limits liability for death or personal injury caused by negligence, for fraud, or for anything else that cannot lawfully be excluded.</p>
+<hr />
+<h2>8. Your content</h2>
+<p>You retain all rights to every screenshot you create. We claim no ownership, licence or interest in your captures — we never receive them.</p>
+<hr />
+<h2>9. Third-party websites</h2>
+<p>Tallshot operates on pages you choose to visit. We do not control those pages, do not endorse their content, and are not responsible for them.</p>
+<hr />
+<h2>10. Availability and changes</h2>
+<p>We may update, change or discontinue Tallshot at any time. Because the source is public under the MIT Licence, you are free to continue using or maintaining any version yourself.</p>
+<p>We may update these terms. Material changes will be reflected in the &quot;Last updated&quot; date and recorded in the project's CHANGELOG. Continued use after a change constitutes acceptance.</p>
+<hr />
+<h2>11. Termination</h2>
+<p>You may stop using Tallshot at any time by removing it from <code>chrome://extensions</code>. Sections 5 through 9 survive termination.</p>
+<hr />
+<h2>12. Governing law</h2>
+<p>These terms are governed by the laws of the jurisdiction in which the developer resides, without regard to conflict-of-law rules. Nothing here removes any mandatory consumer protection you have under the law of your own country of residence.</p>
+<hr />
+<h2>13. Severability</h2>
+<p>If any provision is held unenforceable, it is modified to the minimum extent necessary to make it enforceable, and the remaining provisions stay in full effect.</p>
+<hr />
+<h2>14. Contact</h2>
+<ul><li><strong>Issues and questions:</strong> https://github.com/ownCoder/tallshot/issues</li><li><strong>Email:</strong> owncoder@gmail.com</li></ul>
+<hr />
+<p><em>Chrome is a trademark of Google LLC. Tallshot is an independent project with no affiliation to Google LLC. Other product names mentioned in project documentation are the trademarks of their respective owners and are referenced factually.</em></p>
+  </main>
+  <footer class="site">
+    <p>Tallshot is an independent project and is not affiliated with, endorsed by,
+    or sponsored by Google LLC. Chrome is a trademark of Google LLC.</p>
+    <p>This page contains no scripts, no trackers and no external requests —
+    which is rather the point.</p>
+  </footer>
+</div>
+</body>
+</html>
